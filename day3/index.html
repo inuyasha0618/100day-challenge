@@ -27,14 +27,12 @@
 			fragColor = vec4(vColor, 1.0);
 		}
 	</script>
+	<script src="./js/util.js"></script>
 	<script src="./js/initGl.js"></script>
 	<script>
 		(function() {
 
 			const getRotationMatrix = angle => {
-				const cos = Math.cos,
-				    sin = Math.sin,
-				    pi = Math.PI;
 
 				angle = angle / 180 * pi;
 
