@@ -1,53 +1,5 @@
 import initGl from './utils/initGl.js';
-import { cos, sin, pi } from './utils/math.js';
-
-const getRotationMatrix = angle => {
-
-    angle = angle / 180 * pi;
-
-    return new Float32Array([
-      cos(angle), sin(angle), 0, 0,
-      -sin(angle), cos(angle), 0, 0,
-      0, 0, 1, 0,
-      0, 0, 0, 1
-    ]);
-}
-
-let time = +new Date;
-const speed = 36;
-let angle = 0;
-
-const draw = () => {
-
-    let now = +new Date;
-    let nowAngle = angle + ((now - time) / 1000 * speed) % 360;
-
-    let formMatrix = getRotationMatrix(nowAngle);
-
-    gl.uniformMatrix4fv(mat, false, formMatrix);
-
-    const cos = Math.cos,
-        sin = Math.sin,
-        pi = Math.PI,
-        fi = pi / 2.01;
-
-    let tcwMat = new Float32Array([
-    cos(fi), 0.0, sin(fi), 0.0,
-    0.0, 1.0, 0.0, 0.0,
-    -sin(fi), 0.0, cos(fi), 0.0,
-    0.25*(sin(fi) - cos(fi)), -0.25, -0.25*(sin(fi) + cos(fi)), 1
-    ])
-    
-    gl.uniformMatrix4fv(tcw, false, tcwMat);
-
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-
-    angle = nowAngle;
-    time = now;
-    requestAnimationFrame(draw);
-}
-
+import drawCreator from './drawCreator.js';
 
 const cvs = document.querySelector('#cvs');
 
@@ -71,12 +23,14 @@ gl.vertexAttribPointer(1, 3, gl.FLOAT, false, SIZE * 5, SIZE * 2);
 gl.enableVertexAttribArray(0);
 gl.enableVertexAttribArray(1);
 
+const draw = drawCreator({
+    gl,
+    program,
+    initialAngle: 0,
+    axisX: 0,
+    axisY: 0,
+    axisZ: 1,
+    speed: 66
+});
 
-const mat = gl.getUniformLocation(program, 'matrix');
-const tcw = gl.getUniformLocation(program, 'Tcw');
-
-// gl.uniformMatrix4fv(mat, false, formMatrix);
-
-// gl.clear(gl.COLOR_BUFFER_BIT);
-// gl.drawArrays(gl.TRIANGLES, 0, 3);
 draw();
