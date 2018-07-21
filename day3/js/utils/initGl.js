@@ -1,4 +1,4 @@
-function initGl(canvas) {
+const initGl = (canvas) => {
     const gl = cvs.getContext('webgl2');
     if (!gl) {
         document.write('Please change to a browser which supports WebGl 2.0~');
@@ -42,3 +42,5 @@ function initGl(canvas) {
 
     return {gl, program};
 }
+
+export default initGl;
