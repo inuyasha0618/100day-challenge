@@ -12,11 +12,13 @@
 		uniform mat4 matrix;
 		uniform mat4 Tcw;
 		uniform mat4 perspective;
+		uniform mat4 trans;
+		uniform mat4 invtrans;
 		layout (location=0) in vec4 position;
 		layout (location=1) in vec3 color;
 		out vec3 vColor;
 		void main() {
-			gl_Position = perspective * Tcw * matrix * position;
+			gl_Position = perspective * Tcw * invtrans * matrix * trans * position;
 			vColor = color;
 		}
 	</script>

@@ -26,6 +26,15 @@ export default class Matrix4 {
         return this;
     }
 
+    setTranslate(x, y, z) {
+        let e = this.elements;
+        e[0] = 1;  e[4] = 0;  e[8]  = 0;  e[12] = x;
+        e[1] = 0;  e[5] = 1;  e[9]  = 0;  e[13] = y;
+        e[2] = 0;  e[6] = 0;  e[10] = 1;  e[14] = z;
+        e[3] = 0;  e[7] = 0;  e[11] = 0;  e[15] = 1;
+        return this;
+      };
+
     multiply(other) {
         var i, e, a, b, ai0, ai1, ai2, ai3;
   

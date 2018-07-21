@@ -59,8 +59,8 @@ const draw = drawCreator({
     program,
     initialAngle: 0,
     axisX: 0,
-    axisY: 0,
-    axisZ: 1,
+    axisY: 1,
+    axisZ: 0,
     speed: 66,
     n: 36
 });
