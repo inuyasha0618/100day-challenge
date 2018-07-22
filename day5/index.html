@@ -10,6 +10,8 @@
 	<script type="vertex-shader" id="vertex">
 		#version 300 es
 		uniform mat4 matrix;
+		uniform mat4 matrix2;
+
 		uniform mat4 Tcw;
 		uniform mat4 perspective;
 		uniform mat4 trans;
@@ -18,7 +20,7 @@
 		layout (location=1) in vec3 color;
 		out vec3 vColor;
 		void main() {
-			gl_Position = perspective * Tcw * invtrans * matrix * trans * position;
+			gl_Position = perspective * Tcw * invtrans * matrix * matrix2 * trans * position;
 			vColor = color;
 		}
 	</script>

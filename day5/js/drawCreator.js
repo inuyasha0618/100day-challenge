@@ -5,6 +5,8 @@ export default ({gl, program, initialAngle=0, axisX=0, axisY=0, axisZ=1, speed=3
     let time = +new Date;
     let angle = initialAngle;
     const mat = gl.getUniformLocation(program, 'matrix');
+    const mat2 = gl.getUniformLocation(program, 'matrix2');
+
     const tcw = gl.getUniformLocation(program, 'Tcw');
     const trans = gl.getUniformLocation(program, 'trans');
     const invtrans = gl.getUniformLocation(program, 'invtrans');
@@ -12,6 +14,8 @@ export default ({gl, program, initialAngle=0, axisX=0, axisY=0, axisZ=1, speed=3
 
     const perspective = gl.getUniformLocation(program, 'perspective');
     const modelMatrix = new Matrix4();
+    const modelMatrix2 = new Matrix4();
+    
     const tcwMat = new Matrix4().setLookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
     const perspectiveMat = new Matrix4().setPerspective(60, 1, 1.0, 100.0);
 
@@ -37,9 +41,11 @@ export default ({gl, program, initialAngle=0, axisX=0, axisY=0, axisZ=1, speed=3
 
         }
         modelMatrix.setRotate(nowAngle, axisX, axisY, axisZ);
-        
+        modelMatrix2.setRotate(nowAngle, 0, 0, 1);
 
         gl.uniformMatrix4fv(mat, false, modelMatrix.elements);
+        gl.uniformMatrix4fv(mat2, false, modelMatrix2.elements);
+
         
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);

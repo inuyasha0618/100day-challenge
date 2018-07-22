@@ -61,7 +61,7 @@ const draw = drawCreator({
     axisX: 0,
     axisY: 1,
     axisZ: 0,
-    speed: 66,
+    speed: 100,
     n: 36
 });
 
