@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>day5</title>
+	<script src="./js/index.js" type="module"></script>
+</head>
+<body>
+	<canvas id="cvs" width="600" height="600"></canvas>
+	<script type="vertex-shader" id="vertex">
+		#version 300 es
+		layout (location=0) in vec4 position;
+		uniform mat4 Tcw;
+		uniform mat4 perspective;
+		uniform vec3 color;
+		uniform float time;
+		out vec3 vColor;
+		void main() {
+			float r2 = position.x * position.x + position.y * position.y;
+			float omiga = 0.001;
+			float kr = 1.0;
+			float angle = (omiga * time + kr * sqrt(r2));
+
+			gl_Position = position;
+			gl_Position.z = 10.0 / (r2 + 10.0) * sin(angle);
+
+			gl_Position = perspective * Tcw * gl_Position;
+
+			vColor = color;
+		}
+	</script>
+	<script type="fragment-shader" id="fragment">
+		#version 300 es
+		precision highp float;
+		in vec3 vColor;
+		out vec4 fragColor;
+		void main() {
+			fragColor = vec4(vColor, 1.0);
+		}
+	</script>
+</body>
+</html>
