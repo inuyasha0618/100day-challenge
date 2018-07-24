@@ -29,7 +29,7 @@ const { gl, program } = initGl(cvs);
 let r = 0;
 let grid = [];
 for (let i = 1; i < 10; i++) {
-    r = 0.08 * i;
+    r = 0.8 * i;
     for (let j = 0; j < 100; j++) {
         let theta = Math.PI * 2 / 100 * j;
         grid.push(r * Math.cos(theta));

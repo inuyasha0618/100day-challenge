@@ -17,12 +17,12 @@
 		out vec3 vColor;
 		void main() {
 			float r2 = position.x * position.x + position.y * position.y;
-			float omiga = 0.001;
+			float omiga = 0.01;
 			float kr = 1.0;
 			float angle = (omiga * time + kr * sqrt(r2));
 
 			gl_Position = position;
-			gl_Position.z = 10.0 / (r2 + 10.0) * sin(angle);
+			gl_Position.z = 100.0 / (r2 + 10.0) * sin(angle);
 
 			gl_Position = perspective * Tcw * gl_Position;
 
