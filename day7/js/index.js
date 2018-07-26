@@ -67,7 +67,7 @@ const draw = drawCreator({
     gl,
     program,
     initialAngle: 0,
-    speedEarth: 10,
+    speedEarth: 100,
     speedMoon: 500,
     earthSelfSpeed: 100,
     moonSelfSpeed: 2000,
