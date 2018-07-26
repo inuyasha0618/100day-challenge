@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>day7</title>
+	<script src="./js/index.js" type="module"></script>
+</head>
+<body>
+	<canvas id="cvs" width="600" height="600"></canvas>
+	<script type="vertex-shader" id="vertex">
+		#version 300 es
+		uniform mat4 mvp;
+		layout (location=0) in vec4 position;
+		layout (location=1) in vec3 color;
+		out vec3 vColor;
+		void main() {
+			gl_Position = mvp * position;
+			vColor = color;
+		}
+	</script>
+	<script type="fragment-shader" id="fragment">
+		#version 300 es
+		precision highp float;
+		in vec3 vColor;
+		out vec4 fragColor;
+		void main() {
+			fragColor = vec4(vColor, 1.0);
+		}
+	</script>
+</body>
+</html>
