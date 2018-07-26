@@ -1,4 +1,4 @@
-import initGl from './utils/initGl.js';
+import initGl from '/utils/initGl.js';
 import drawCreator from './drawCreator.js';
 
 const cvs = document.querySelector('#cvs');

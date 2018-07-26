@@ -1,5 +1,5 @@
-import { cos, sin, pi } from './utils/math.js';
-import Matrix4 from './utils/matrix.js'
+import { cos, sin, pi } from '/utils/math.js';
+import Matrix4 from '/utils/matrix.js'
 
 const mul = (...mats) => {
     let initialMat = new Matrix4().setIdentity();
