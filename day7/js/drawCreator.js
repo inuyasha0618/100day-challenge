@@ -1,12 +1,5 @@
 import { cos, sin, pi } from '/utils/math.js';
-import Matrix4 from '/utils/matrix.js'
-
-const mul = (...mats) => {
-    let initialMat = new Matrix4().setIdentity();
-    return mats.reduce((accu, current) => {
-        return accu.multiply(current);
-    }, initialMat);
-}
+import Matrix4, { mul } from '/utils/matrix.js'
 
 export default ({
     gl,

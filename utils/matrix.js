@@ -1,3 +1,10 @@
+export const mul = (...mats) => {
+    let initialMat = new Matrix4().setIdentity();
+    return mats.reduce((accu, current) => {
+        return accu.multiply(current);
+    }, initialMat);
+}
+
 export default class Matrix4 {
     constructor(opt_src) {
         let i, s, d;
