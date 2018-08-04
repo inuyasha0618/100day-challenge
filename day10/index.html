@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My gl big project!!!</title>
+    <script src="js/index.js" type="module"></script>
+    <script id="vertex-shader" type="shader/vertex-shader">
+        #version 300 es
+        uniform mat4 uModelMatrix;
+        uniform mat4 uVPMatrix;
+        uniform mat4 uMVPMatrix;
+        uniform mat4 uPMatrix;
+        uniform mat4 uCameraMatrix;
+        in vec3 a_position;
+        in vec3 a_color;
+        out vec3 vColor;
+        void main() {
+            gl_Position = uPMatrix * uCameraMatrix * uModelMatrix * vec4(a_position, 1.0);
+            vColor = a_color;
+        }
+    </script>
+    <script id="fragment-shader" type="shader/fragment-shader">
+        #version 300 es
+        precision highp float;
+        in vec3 vColor;
+        out vec4 myColor;
+        void main() {
+            myColor = vec4(vColor, 1.0);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="cvs-id"></canvas>
+    <div class="container">
+        <div id="fps"></div>
+        <div>
+            <button id="btn">stop</button>
+        </div>
+    </div>
+</body>
+</html>
