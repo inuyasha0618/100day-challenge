@@ -454,7 +454,6 @@ const drawCreator = ({
 };
 
 const cvs = document.querySelector('#cvs');
-console.log('haha');
 
 const vertexShaderSrc = `#version 300 es
 uniform mat4 mvp;
@@ -513,8 +512,8 @@ mat4 rotZ(float angle) {
 float interpolate(float startTime, float currTime, float cycle, float beginValue, float targetValue) {
     float timeCost = (currTime - startTime) / 1000.0;
     float cycleIndex = floor(timeCost / cycle);
-    float t = timeCost / cycle - cycleIndex;
-    if (cycleIndex / 2.0 - floor(cycleIndex / 2.0) == 0.0) {
+    float t =  fract(timeCost / cycle);
+    if (mod(cycleIndex, 2.0) == 0.0) {
         return beginValue + t * (targetValue - beginValue);
     } else {
         return targetValue + t * (beginValue - targetValue);
